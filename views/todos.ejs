@@ -21,6 +21,19 @@
 
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
+    <form action="/todos/getTodosByCategory" method="POST">
+        <select name="todoCategory">
+            <option> ---Choose Category--- </option>
+            <option value="Professional Work"> Professional Work </option>
+            <option value="Personal Work"> Personal Work </option>
+            <option value="Chores"> Chores </option>
+            <option value="Events Work"> Events </option>
+            <option value="Recreation"> Recreation </option>
+        </select>
+        <input type="submit" value="filter">
+    </form>
+
+
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <label><input type="radio" name="todoCategory" value="Professional Work">Professional Work</label>

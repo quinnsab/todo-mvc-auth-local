@@ -19,12 +19,11 @@ module.exports = {
     }
   },
   getTodosByCategory: async (req, res) => {
-    console.log(req.user)
-    console.log(req.category)
+    console.log(req.body);
     try {
       const todoItems = await Todo.find({
         userId: req.user.id,
-        category: req.category,
+        category: req.body.todoCategory,
       });
       const itemsLeft = await Todo.countDocuments({
         userId: req.user.id,
@@ -34,10 +33,9 @@ module.exports = {
         todos: todoItems,
         left: itemsLeft,
         user: req.user,
-        category: req.category
       });
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   },
   createTodo: async (req, res) => {
