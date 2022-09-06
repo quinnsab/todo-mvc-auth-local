@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-    <h1>Todos</h1>
-    <ul>
+<body class="todos container">
+    <h1 class="todos__title">Todos</h1>
+    <ul class="todos__list">
         <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
@@ -33,24 +34,29 @@
                 <label><input type="radio" name="todoCategory" value="Events">Events</label>
                 <label><input type="radio" name="todoCategory" value="Recreation">Recreation</label>
         </fieldset>
-        <div class="form__submit link form">
-            <input type="submit">
+        <div class="form__submit">
+            <input type="submit" class="link">
         </div>
     </form>
     
-    <form action="/todos/getTodosByCategory" method="POST">
-        <select name="todoCategory">
-            <option> ---Choose Category--- </option>
-            <option value="Professional Work"> Professional Work </option>
-            <option value="Personal Work"> Personal Work </option>
-            <option value="Chores"> Chores </option>
-            <option value="Events Work"> Events </option>
-            <option value="Recreation"> Recreation </option>
-        </select>
-        <input type="submit" value="filter">
-    </form>
-    <div class="form form__input-field">
-        <a href="/logout">Logout</a>
+    <section class="select__category">
+        <form class="todos__filter" action="/todos/getTodosByCategory" method="POST">
+            <h2>Filter by Category</h2>
+            <div class="custom-select">
+                <select name="todoCategory" class="filter__category form">
+                    <option> ---Choose Category--- </option>
+                    <option value="Professional Work"> Professional Work </option>
+                    <option value="Personal Work"> Personal Work </option>
+                    <option value="Chores"> Chores </option>
+                    <option value="Events Work"> Events </option>
+                    <option value="Recreation"> Recreation </option>
+                </select>
+            </div>
+            <input type="submit" value="filter" class="link">
+        </form>
+    </section>
+    <div class="form form__input-field logout">
+        <a href="/logout" class="link">Logout</a>
     </div>
     <script src="js/main.js"></script>
 </body>
