@@ -18,6 +18,26 @@ module.exports = {
       console.log(err);
     }
   },
+  getTodosByCategory: async (req, res) => {
+    console.log(req.body);
+    try {
+      const todoItems = await Todo.find({
+        userId: req.user.id,
+        category: req.body.todoCategory,
+      });
+      const itemsLeft = await Todo.countDocuments({
+        userId: req.user.id,
+        completed: false,
+      });
+      res.render("todos.ejs", {
+        todos: todoItems,
+        left: itemsLeft,
+        user: req.user,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   createTodo: async (req, res) => {
     try {
       await Todo.create({

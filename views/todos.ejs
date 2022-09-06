@@ -20,7 +20,6 @@
     </ul>
 
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-  
     
     <form class="form__input-field form" action="/todos/createTodo" method='POST'>
         <div class="form" >
@@ -38,12 +37,21 @@
             <input type="submit">
         </div>
     </form>
- 
-        <div class="form form__input-field">
-            <a href="/logout">Logout</a>
-        </div>
-   
-
+    
+    <form action="/todos/getTodosByCategory" method="POST">
+        <select name="todoCategory">
+            <option> ---Choose Category--- </option>
+            <option value="Professional Work"> Professional Work </option>
+            <option value="Personal Work"> Personal Work </option>
+            <option value="Chores"> Chores </option>
+            <option value="Events Work"> Events </option>
+            <option value="Recreation"> Recreation </option>
+        </select>
+        <input type="submit" value="filter">
+    </form>
+    <div class="form form__input-field">
+        <a href="/logout">Logout</a>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>
